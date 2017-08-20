@@ -6,7 +6,7 @@ class LoginControllerTest extends TestCase
 {
     public function testShowLoginForm()
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
