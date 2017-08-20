@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'EduSys'),
 
     /*
     |--------------------------------------------------------------------------
@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        EduSys\Providers\AppServiceProvider::class,
+        EduSys\Providers\AuthServiceProvider::class,
+        // EduSys\Providers\BroadcastServiceProvider::class,
+        EduSys\Providers\EventServiceProvider::class,
+        EduSys\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -226,6 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'UserHelper' => EduSys\Helpers\UserHelper::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
 
     ],

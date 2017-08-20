@@ -1,28 +1,37 @@
 <?php
 
-namespace Prexle\Helpers;
+namespace EduSys\Helpers;
 
-
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Input;
 
 class UserHelper
 {
     /**
      * @return string
      */
-    public static function getUsersLanguage()
+    public static function getUserLanguage()
     {
         $user = auth()->user();
 
         // we should always first try to use language from user settings
         if ($user != null && !empty($user->settings['language'])) {
+// The locale _GET overwrites the user settings. We check if we have any
+            if(Input::get('locale')){
+                $settings = $user->settings;
+                $settings['language'] = Input::get('locale');
+                $user->settings = $settings;
+                $user->save();
+            }
             return $user->settings['language'];
         }
 
         $defaultLanguage = config('app.locale');
 
+        // Check _GET locale
+        if(Input::get('locale')){
+            return (Input::get('locale'));
+        }
         // check if user has language cookie
         if (Cookie::has('language')) {
             return Cookie::get('language');

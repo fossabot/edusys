@@ -1,0 +1,24 @@
+.navbar-brand {
+  float: left;
+}
+
+.navbar-header {
+  float: right;
+}
+
+.navbar-right {
+  float: left !important;
+  margin-left: -15px;
+}
+
+@media (min-width: 768px) {
+  .navbar-right .dropdown-menu {
+    left: 0;
+    right: auto;
+  }
+
+  .navbar-nav {
+    float: right;
+  }
+}
+

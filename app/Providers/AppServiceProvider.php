@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace EduSys\Providers;
 
+use EduSys\Helpers\UserHelper;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function ($view) {
+            $language = UserHelper::getUserLanguage();
+            $textDirection = $language == 'ar' ? 'rtl':'ltr';
+
+            // Share the language and dir variables on all views
+            view()->share('language', $language);
+            view()->share('dir', $textDirection);
+
+        });
     }
 
     /**
