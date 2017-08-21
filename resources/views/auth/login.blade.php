@@ -43,7 +43,7 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <span>@lang('auth.remember_me')</span>
+                                        <span style="padding-right:20px">@lang('auth.remember_me')</span>
                                     </label>
                                 </div>
                             </div>

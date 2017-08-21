@@ -1,6 +1,6 @@
 <?php
 return [
-    'EduSys' => 'ادارة المعلم',
+    'EduSys' => 'ادارة المدرسة',
     'english' => 'English',
     'arabic' => 'عربية'
 ];
