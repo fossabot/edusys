@@ -13,11 +13,20 @@ class LoginControllerTest extends TestCase
 
     public function testLogin()
     {
-        $user = factory(\App\User::class)->create(['password' => 'password']);
+        $user = factory(EduSys\Models\User::class)->create(['password' => 'password']);
         $data = ['email' => $user->email, 'password' => 'password'];
 
-        $response = $this->post('/login',$data);
+        $response = $this->call('post','/login',$data);
+        $response->assertStatus(302);
+    }
 
-        $response->assertStatus(201);
+    public function testLoginWithWrongCredentials()
+    {
+        $user = factory(EduSys\Models\User::class)->create(['password' => 'password']);
+        $data = ['email' => $user->email, 'password' => 'wrongpassword'];
+
+        $response = $this->call('post','/login',$data);
+        $response = $this->followRedirects($response);
+        $response->assertSee('Login');
     }
 }

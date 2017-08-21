@@ -16,10 +16,12 @@ class RegisterControllerTest extends TestCase
     public function testRegister()
     {
         $faker = Faker::create();
-        $data = ['name' => $faker->name(),'email' => $faker->email, 'password' => $faker->password(6)];
+        $password =$faker->password(6);
+        $data = ['name' => $faker->name(),'email' => $faker->email, 'password' => $password,'password_confirmation' => $password];
 
         $response = $this->post('/register',$data);
 
-        $response->assertStatus(201);
+        $response = $this->followRedirects($response);
+        $response->assertSee('Dashboard');
  }
 }
